@@ -28,7 +28,7 @@ TebLocalPlannerROS:
  max_vel_x_backwards:   0.6                  #1.0
  max_vel_y:             0.0
  max_vel_theta:         3.7                 #4.0最大角速度约束(r = v / omega)
- acc_lim_x:             0.7                 #3.0 最大加速度约束
+ acc_lim_x:             0.80                 #3.0 最大加速度约束
  acc_lim_theta:         3.6                 #3.0 角加速度约束
  use_proportional_saturation: true
  is_footprint_dynamic: false
@@ -53,7 +53,7 @@ TebLocalPlannerROS:
  # GoalTolerance
     
  xy_goal_tolerance:      0.2                #目标跟踪差
- yaw_goal_tolerance:     0.4                #目标跟踪差
+ yaw_goal_tolerance:     0.8                #目标跟踪差
  free_goal_vel:          False              #自由目标速度
  complete_global_plan:   True
 
@@ -68,7 +68,7 @@ TebLocalPlannerROS:
     
  min_obstacle_dist: 0.26                     #0.5 与障碍物的最小期望距离This value must also include our robot's expansion, since footprint_model is set to "line".
                                             #必须与局部耗散地图中的值一值
- inflation_dist:    0.4                    #障碍物膨胀距离0.8
+ inflation_dist:    0.7                    #障碍物膨胀距离0.8
  include_costmap_obstacles: True            #探测建图时不存在的障碍物
  costmap_obstacles_behind_robot_dist: 1.5   #限制在机器人背后进行规划时要考虑的已占用本地成本图障碍（以米为单位指定距离
  obstacle_poses_affected:   200              #20障碍物位置与轨迹上最接近的姿态相连，	
@@ -94,11 +94,11 @@ TebLocalPlannerROS:
  weight_max_vel_x:          0
  weight_max_vel_theta:      0            #满足最大允许角速度的优化权重
  weight_acc_lim_x:          3.0             #满足最大允许平移加速度的优化权重
- weight_acc_lim_theta:      0.1            #满足最大允许角加速度的优化权重
- weight_kinematics_nh:      80     
+ weight_acc_lim_theta:      0.05            #满足最大允许角加速度的优化权重
+ weight_kinematics_nh:      90     
  weight_kinematics_forward_drive:   80    #1大幅增加可禁止规划倒车
  weight_kinematics_turning_radius:  900      #90优化权重，以实现最小转弯半径
- weight_optimaltime:        6.2               # must be > 0
+ weight_optimaltime:        5.3               # must be > 0
  weight_shortest_path:      20
  weight_obstacle:           200              #优化权重以保持与障碍物的最小距离
  weight_inflation:          0.2             #通胀惩罚的优化权重（应该很小）
@@ -108,7 +108,7 @@ TebLocalPlannerROS:
 
  global_plan_viapoint_sep:   1.5            #从全局规划路径中提取的路点的相互距离,间隔多远设置一个point
                                             #在无障碍空间仍不走直线可将其设置为较小的正数
- weight_viapoint:           4.0             #优化过程中，和全局路径采样点距离的权重
+ weight_viapoint:           1.5             #优化过程中，和全局路径采样点距离的权重
  weight_adapt_factor:       2               #在每次外部TEB迭代中，一些特殊权重（当前为“ weight_obstacle”）会以此因子重复缩放（weight_new：weight_old * factor）； 
                                             #迭代地增加权重而不是设置较大的先验值会导致底层优化问题的更好的数值条件。
  # Homotopy Class Planner

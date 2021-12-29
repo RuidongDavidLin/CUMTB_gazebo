@@ -24,12 +24,12 @@ TebLocalPlannerROS:
     
  # Robot
          
- max_vel_x:             5.01                 #9.0 速度最大限制
+ max_vel_x:             1.9                 #9.0 速度最大限制
  max_vel_x_backwards:   0.6                  #1.0
  max_vel_y:             0.0
  max_vel_theta:         3.7                 #4.0最大角速度约束(r = v / omega)
- acc_lim_x:             0.7                 #3.0 最大加速度约束
- acc_lim_theta:         3.6                 #3.0 角加速度约束
+ acc_lim_x:             0.8                 #3.0 最大加速度约束
+ acc_lim_theta:         4.05                 #3.0 角加速度约束
  use_proportional_saturation: true
  is_footprint_dynamic: false
 
@@ -53,20 +53,20 @@ TebLocalPlannerROS:
  # GoalTolerance
     
  xy_goal_tolerance:      0.2                #目标跟踪差
- yaw_goal_tolerance:     0.4                #目标跟踪差
+ yaw_goal_tolerance:     0.8                #目标跟踪差
  free_goal_vel:          False              #自由目标速度
  complete_global_plan:   True
 
 #关于避障
- obstacle_proximity_ratio_max_vel: 0.005
- obstacle_proximity_lower_bound: 0.4
- obstacle_proximity_upper_bound: 2.9
- weight_velocity_obstacle_ratio: 1000
+ obstacle_proximity_ratio_max_vel: 0.6
+ obstacle_proximity_lower_bound: 0.0
+ obstacle_proximity_upper_bound: 0.2
+ weight_velocity_obstacle_ratio: 0.9
 
     
  # Obstacles
     
- min_obstacle_dist: 0.26                     #0.5 与障碍物的最小期望距离This value must also include our robot's expansion, since footprint_model is set to "line".
+ min_obstacle_dist: 0.23                     #0.5 与障碍物的最小期望距离This value must also include our robot's expansion, since footprint_model is set to "line".
                                             #必须与局部耗散地图中的值一值
  inflation_dist:    0.4                    #障碍物膨胀距离0.8
  include_costmap_obstacles: True            #探测建图时不存在的障碍物
@@ -89,31 +89,31 @@ TebLocalPlannerROS:
  no_outer_iterations:       4
  optimization_activate:     True
  optimization_verbose:      false
- penalty_epsilon:           0.1
+ penalty_epsilon:           0.11
  obstacle_cost_exponent:    4
  weight_max_vel_x:          0
  weight_max_vel_theta:      0            #满足最大允许角速度的优化权重
- weight_acc_lim_x:          3.0             #满足最大允许平移加速度的优化权重
- weight_acc_lim_theta:      0.1            #满足最大允许角加速度的优化权重
- weight_kinematics_nh:      80     
+ weight_acc_lim_x:          1.9             #满足最大允许平移加速度的优化权重
+ weight_acc_lim_theta:      0.5            #满足最大允许角加速度的优化权重
+ weight_kinematics_nh:      200     
  weight_kinematics_forward_drive:   80    #1大幅增加可禁止规划倒车
- weight_kinematics_turning_radius:  900      #90优化权重，以实现最小转弯半径
- weight_optimaltime:        6.2               # must be > 0
- weight_shortest_path:      20
- weight_obstacle:           200              #优化权重以保持与障碍物的最小距离
- weight_inflation:          0.2             #通胀惩罚的优化权重（应该很小）
+ weight_kinematics_turning_radius:  90      #90优化权重，以实现最小转弯半径
+ weight_optimaltime:        5.9               # must be > 0
+ weight_shortest_path:      1.4
+ weight_obstacle:           100              #优化权重以保持与障碍物的最小距离
+ weight_inflation:          0.5             #通胀惩罚的优化权重（应该很小）
  weight_dynamic_obstacle:   200              # not in use yet
  weight_dynamic_obstacle_inflation: 0.6     #优化过程中，和动态障碍物膨胀区的权重
  
 
- global_plan_viapoint_sep:   1.5            #从全局规划路径中提取的路点的相互距离,间隔多远设置一个point
+ global_plan_viapoint_sep:   -0.1            #从全局规划路径中提取的路点的相互距离,间隔多远设置一个point
                                             #在无障碍空间仍不走直线可将其设置为较小的正数
- weight_viapoint:           4.0             #优化过程中，和全局路径采样点距离的权重
+ weight_viapoint:           1             #优化过程中，和全局路径采样点距离的权重
  weight_adapt_factor:       2               #在每次外部TEB迭代中，一些特殊权重（当前为“ weight_obstacle”）会以此因子重复缩放（weight_new：weight_old * factor）； 
                                             #迭代地增加权重而不是设置较大的先验值会导致底层优化问题的更好的数值条件。
  # Homotopy Class Planner
  # 独特拓扑中的并行规划
- enable_homotopy_class_planning: false
+ enable_homotopy_class_planning: true
  enable_multithreading: True
  max_number_classes:        4               #允许的线程数
  selection_cost_hysteresis: 1.0             #指定新候选人必须有多少轨迹成本 先前选择的轨迹以进行选择（如果new_cost <old_cost * factor则选择）

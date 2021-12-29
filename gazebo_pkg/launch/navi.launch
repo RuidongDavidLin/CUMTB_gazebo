@@ -2,7 +2,7 @@
   
   <arg name="world_name" default="racetrack" />
   <arg name="use_sim_time" default="true"/>
-  <arg name="run_camera" default="true"/>
+  <arg name="run_camera" default="false"/>
   <arg name="paused" default="true"/>
   <arg name="x_pos" default="0.0"/>
   <arg name="y_pos" default="0.0"/>
@@ -13,10 +13,10 @@
 
 <!--Localization -->
 
-<!-- Robot_Localization  >
+<!-- Robot_Localization 
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
         <rosparam command="load" file="$(find gazebo_pkg)/config/ekf_params.yaml" />
-    </node-->
+    </node> -->
 
 <!-- AMCL -->
 	<include file="$(find gazebo_pkg)/launch/includes/amcl2.launch"/>
@@ -28,26 +28,22 @@
     <rosparam file="$(find gazebo_pkg)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find gazebo_pkg)/config/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find gazebo_pkg)/config/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find gazebo_pkg)/config/global_planner_params.yaml" command="load" />
-    <!--rosparam file="$(find gazebo_pkg)/config/mpc_local_planner_params_minimum_time.yaml" command="load" /-->
     <rosparam file="$(find gazebo_pkg)/config/teb_local_planner_params.yaml" command="load" />
 <!-- costmap_coverter插件启动 -->
     <rosparam file="$(find gazebo_pkg)/config/costmap_converter_params.yaml" command="load" />
 
     <param name="base_global_planner" value="global_planner/GlobalPlanner" />
-    <param name="planner_frequency" value="10.0" />
+    <param name="planner_frequency" value="0.01" />
     <param name="planner_patience" value="5.0" />
     <!--param name="use_dijkstra" value="false" /-->
     
     <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
-    <!--param name="base_local_planner" value="mpc_local_planner/MpcLocalPlannerROS" /-->
     <param name="controller_frequency" value="20.0" />
     <param name="controller_patience" value="15.0" />
 
     <param name="clearing_rotation_allowed" value="false" />
-    <remap from="/cmd_vel" to="/cmd_vel"/>
-    <remap from="/odom" to="/odom/filtered"/>
 <!-- 重映射：接受ekf发布的odom topic 
+    <remap from="/cmd_vel" to="/vel"/>
     
   </node>-->	
 
@@ -60,6 +56,6 @@
 -->
 	
 	<!-- 启动rviz -->
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find gazebo_pkg)/config/race.rviz"/>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find gazebo_pkg)/config/racecar_rviz.rviz"/>
 
 </launch>
