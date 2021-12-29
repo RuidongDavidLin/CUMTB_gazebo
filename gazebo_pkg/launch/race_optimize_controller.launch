@@ -1,0 +1,4 @@
+<launch>
+  <node name="race_optimizer" pkg="gazebo_pkg" type="race_optimize_controller.py" output="screen">
+  </node>
+</launch>

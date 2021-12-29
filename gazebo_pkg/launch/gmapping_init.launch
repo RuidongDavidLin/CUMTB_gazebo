@@ -1,0 +1,12 @@
+<launch>
+
+    <include file="$(find gazebo_pkg)/launch/includes/gmapping.launch"/>
+
+<!-- Launch the racecar -->
+    <include file="$(find gazebo_pkg)/launch/includes/racecar.launch" />
+
+<!-- 启动rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find gazebo_pkg)/config/new_gmapping.rviz"/>
+
+</launch>
+

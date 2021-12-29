@@ -1,0 +1,7 @@
+<launch>
+
+  <!-- Launch the racecar -->
+  <include file="$(find gazebo_pkg)/launch/race.launch" />
+  <include file="$(find gazebo_pkg)/launch/navi.launch"/>
+
+</launch>
