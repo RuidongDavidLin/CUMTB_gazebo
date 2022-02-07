@@ -31,7 +31,7 @@
      <parent link="dummy"/>
      <child link="base_footprint"/>
    </joint>
-<!--  	<xacro:include filename="$(find nav_sim)/urdf/robot.gazebo" />  -->    
+
  
 	<gazebo reference="base_footprint">
 		<material>Gazebo/Green</material>
