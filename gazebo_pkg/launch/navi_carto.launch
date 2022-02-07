@@ -19,7 +19,7 @@
     </node> -->
 
 <!-- AMCL -->
-	<include file="$(find gazebo_pkg)/launch/includes/amcl2.launch"/>
+	<!--include file="$(find gazebo_pkg)/launch/includes/amcl2.launch"/-->
 
 <!--Launch the move base with dwa-->
   <param name="/use_sim_time" value="true"/>

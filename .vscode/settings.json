@@ -4,5 +4,11 @@
         "/home/seanz/carto_ws/install_isolated/lib/python2.7/dist-packages",
         "/home/seanz/ttbot_ws/devel/lib/python2.7/dist-packages",
         "/opt/ros/melodic/lib/python2.7/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/seanz/test/devel/lib/python2.7/dist-packages",
+        "/home/seanz/carto_ws/install_isolated/lib/python2.7/dist-packages",
+        "/home/seanz/ttbot_ws/devel/lib/python2.7/dist-packages",
+        "/opt/ros/melodic/lib/python2.7/dist-packages"
     ]
 }

@@ -1,0 +1,6 @@
+image: /home/david/ucar_ws/src/gazebo_pkg/map/carto_slam.pgm
+resolution: 0.05
+origin: [-1.00492, -7.23238, 0.0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
